@@ -1164,6 +1164,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6290626348606682897}
   - component: {fileID: 3697261627821306803}
+  - component: {fileID: 3451044251311082858}
+  - component: {fileID: 7264560236986202236}
+  - component: {fileID: 817979710775320898}
+  - component: {fileID: 5619047515473471163}
   m_Layer: 0
   m_Name: Unit
   m_TagString: Untagged
@@ -1205,6 +1209,54 @@ MonoBehaviour:
   _outlines:
   - {fileID: 8009833161415810495}
   - {fileID: 9004018038891155538}
+--- !u!114 &3451044251311082858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6290626348606682910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c02fd6624c4bb197ecdbfb8b442635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7264560236986202236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6290626348606682910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc56c11dd804b4c88f932ab201bb0b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &817979710775320898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6290626348606682910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18fb1f6652db47b9a3e8c3d488918630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5619047515473471163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6290626348606682910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4820738a643e4d1098c76a150e1b4eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6364046806504617029
 GameObject:
   m_ObjectHideFlags: 0
