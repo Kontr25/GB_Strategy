@@ -1169,7 +1169,7 @@ GameObject:
   - component: {fileID: 817979710775320898}
   - component: {fileID: 5619047515473471163}
   m_Layer: 0
-  m_Name: Unit
+  m_Name: Chomper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -4,11 +4,13 @@ using _Scripts.Abstraction;
 using _Scripts.Abstraction.Commands;
 using _Scripts.Abstraction.Commands.CommandsInterfaces;
 using _Scripts.UserControlSystem.CommandRealization;
+using _Scripts.Utils;
 using UnityEngine;
 public class CommandButtonsPresenter : MonoBehaviour
 {
     [SerializeField] private SelectableValue _selectable;
     [SerializeField] private CommandButtonsView _view;
+    [SerializeField] private AssetsContext _context;
     
     private ISelectable _currentSelectable;
     private void Start()
@@ -39,7 +41,7 @@ public class CommandButtonsPresenter : MonoBehaviour
             CommandExecutorBase<IProduceUnitCommand>;
         if (unitProducer != null)
         {
-            unitProducer.ExecuteSpecificCommand(new ProduceUnitCommand());
+            unitProducer.ExecuteSpecificCommand(_context.Inject(new ProduceUnitCommandHeir()));
             return;
         }
         
@@ -47,7 +49,7 @@ public class CommandButtonsPresenter : MonoBehaviour
             CommandExecutorBase<IAttackCommand>;
         if (attacker != null)
         {
-            attacker.ExecuteSpecificCommand(new AttackCommand());
+            attacker.ExecuteSpecificCommand(_context.Inject(new AttackCommand()));
             return;
         }
         
@@ -55,7 +57,7 @@ public class CommandButtonsPresenter : MonoBehaviour
             CommandExecutorBase<IMoveCommand>;
         if (mover != null)
         {
-            mover.ExecuteSpecificCommand(new MoveCommand());
+            mover.ExecuteSpecificCommand(_context.Inject(new MoveCommand()));
             return;
         }
         
@@ -63,7 +65,7 @@ public class CommandButtonsPresenter : MonoBehaviour
             CommandExecutorBase<IStopCommand>;
         if (stopper != null)
         {
-            stopper.ExecuteSpecificCommand(new StopCommand());
+            stopper.ExecuteSpecificCommand(_context.Inject(new StopCommand()));
             return;
         }
         
@@ -71,7 +73,7 @@ public class CommandButtonsPresenter : MonoBehaviour
             CommandExecutorBase<IPatrolCommand>;
         if (patroller != null)
         {
-            patroller.ExecuteSpecificCommand(new PatrolCommand());
+            patroller.ExecuteSpecificCommand(_context.Inject(new PatrolCommand()));
             return;
         }
         
