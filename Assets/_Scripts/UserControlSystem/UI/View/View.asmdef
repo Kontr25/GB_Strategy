@@ -2,7 +2,8 @@
     "name": "View",
     "rootNamespace": "",
     "references": [
-        "GUID:29d0b0e4caad5c74b80c94af36cf53f3"
+        "GUID:29d0b0e4caad5c74b80c94af36cf53f3",
+        "GUID:7f25b64c708e3814ab863f122cf6556c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

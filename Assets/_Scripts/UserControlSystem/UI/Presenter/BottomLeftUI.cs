@@ -1,4 +1,5 @@
 using _Scripts.Abstraction;
+using _Scripts.UserControlSystem.UI.Model;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

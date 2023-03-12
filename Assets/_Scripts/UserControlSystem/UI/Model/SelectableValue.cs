@@ -2,14 +2,11 @@ using System;
 using _Scripts.Abstraction;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = nameof(SelectableValue), menuName = "Strategy Game/" + nameof(SelectableValue), order = 0)]
-public class SelectableValue : ScriptableObject
+namespace _Scripts.UserControlSystem.UI.Model
 {
-    public ISelectable CurrentValue { get; private set; }
-    public event Action<ISelectable> OnSelected;
-    public void SetValue(ISelectable value)
+    [CreateAssetMenu(fileName = nameof(SelectableValue), menuName = "Strategy Game/" + nameof(SelectableValue), order = 0)]
+    public class SelectableValue :  ScriptableObjectValueBase<ISelectable>
     {
-        CurrentValue = value;
-        OnSelected?.Invoke(value);
+        
     }
 }

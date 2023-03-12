@@ -1,61 +1,63 @@
-using System.Collections.Generic;
 using System.Linq;
 using _Scripts.Abstraction;
+using _Scripts.UserControlSystem.UI.Model;
 using UnityEngine;
-
-namespace _Scripts.UserControlSystem.UI.Presenter
+using UnityEngine.EventSystems;
+public class MouseInteractionPresenter : MonoBehaviour
 {
-    public class MouseInteractionPresenter : MonoBehaviour
+    [SerializeField] private EventSystem _eventSystem;
+    [SerializeField] private Camera _camera;
+    [SerializeField] private SelectableValue _selectedObject;
+    [SerializeField] private Vector3Value _groundClicksRMB;
+    [SerializeField] private AttackableValue _attackablesRMB;
+    [SerializeField] private Transform _groundTransform;
+    private Plane _groundPlane;
+    private void Start()
     {
-        [SerializeField] private Camera _camera;
-        [SerializeField] private SelectableValue _selectedObject;
-
-        private List<IHighlightable> _highlightables = new List<IHighlightable>();
-
-        private void Update()
+        _groundPlane = new Plane(_groundTransform.up, 0);
+    }
+    private void Update()
+    {
+        if (!Input.GetMouseButtonUp(0) && !Input.GetMouseButton(1))
         {
-            if (!Input.GetMouseButtonUp(0))
-            {
-                return;
-            }
-
-            DisableAllSelection();
-            var hits = Physics.RaycastAll(_camera.ScreenPointToRay(Input.mousePosition));
-            if (hits.Length == 0)
-            {
-                return;
-            }
-
-            var selectable = hits
-                .Select(hit => hit.collider.GetComponentInParent<ISelectable>())
-                .FirstOrDefault(c => c != null);
-            _selectedObject.SetValue(selectable);
-            
-            var highlightable = hits
-                .Select(hit => hit.collider.GetComponentInParent<IHighlightable>())
-                .FirstOrDefault(c => c != null);
-            EnableSelectionOn(highlightable);
+            return;
         }
-
-        private void DisableAllSelection()
+        if (_eventSystem.IsPointerOverGameObject())
         {
-            if (_highlightables.Count > 0)
+            return;
+        }
+        var ray = _camera.ScreenPointToRay(Input.mousePosition);
+        var hits = Physics.RaycastAll(ray);
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (weHit<ISelectable>(hits, out var selectable))
             {
-                for (int i = 0; i < _highlightables.Count; i++)
-                {
-                    _highlightables[i].Highlight();
-                }
-                _highlightables.Clear();
+                _selectedObject.SetValue(selectable);
             }
         }
-        
-        private void EnableSelectionOn(IHighlightable highlightable)
+        else
         {
-            if (highlightable != null)
+            if (weHit<IAttackable>(hits, out var attackable))
             {
-                _highlightables.Add(highlightable);
-                highlightable.Highlight();
+                _attackablesRMB.SetValue(attackable);
+            }
+            else if (_groundPlane.Raycast(ray, out var enter))
+            {
+                _groundClicksRMB.SetValue(ray.origin + ray.direction * enter);
             }
         }
+    }
+    private bool weHit<T>(RaycastHit[] hits, out T result) where T : class
+    {
+        result = default;
+        if (hits.Length == 0)
+        {
+            return false;
+        }
+        result = hits
+            .Select(hit => hit.collider.GetComponentInParent<T>())
+            .Where(c => c != null)
+            .FirstOrDefault();
+        return result != default;
     }
 }

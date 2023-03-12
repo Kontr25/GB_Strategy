@@ -7,33 +7,23 @@ using Random = UnityEngine.Random;
 
 namespace _Scripts.Core
 {
-    public class MainBuilding : CommandExecutorBase<IProduceUnitCommand>, IHighlightable, ISelectable
+    public class MainBuilding : CommandExecutorBase<IProduceUnitCommand>, ISelectable, IAttackable
     {
         public float Health => _health;
         public float MaxHealth => _maxHealth;
+        public Transform PivotPoint => _transform;
         public Sprite Icon => _icon;
 
-        public List<Outline> Outlines => _outlines;
-        
+        [SerializeField] private Transform _transform;
         [SerializeField] private Transform _unitsParent;
-
         [SerializeField] private float _maxHealth = 1000f;
         [SerializeField] private Sprite _icon;
-        [SerializeField] private List<Outline> _outlines;
 
         private float _health = 1000f;
         
-        public void Highlight()
-        {
-            for (int i = 0; i < _outlines.Count; i++)
-            {
-                _outlines[i].enabled = !_outlines[i].enabled;
-            }
-        }
-        
         public void onSelected(ISelectable selected)
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public override void ExecuteSpecificCommand(IProduceUnitCommand command)

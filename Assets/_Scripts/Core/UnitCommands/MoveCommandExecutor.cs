@@ -8,7 +8,7 @@ namespace _Scripts.Core.UnitCommands
     {
         public override void ExecuteSpecificCommand(IMoveCommand command)
         {
-            Debug.Log("Moving!");
+            Debug.Log($"{name} is moving to {command.Target}!");
         }
     }
 }

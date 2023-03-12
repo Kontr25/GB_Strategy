@@ -8,7 +8,7 @@ namespace _Scripts.Core.UnitCommands
     {
         public override void ExecuteSpecificCommand(IPatrolCommand command)
         {
-            Debug.Log("Patrol!");
+            Debug.Log($"{name} start patrolling between point - {command.From} and point - {command.To} has begun");
         }
     }
 }
